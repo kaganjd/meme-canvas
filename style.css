@@ -1,0 +1,18 @@
+body, h1 {
+  font-family: Helvetica;
+  margin: 20px;
+}
+
+#container {
+  flex-direction: column;
+  display: flex;
+  width: 500px;
+}
+
+#canvas {
+  text-align: right;
+}
+
+#actions {
+  text-align: right;
+}
