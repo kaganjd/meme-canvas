@@ -9,12 +9,30 @@ var h = w;
 var x = 10;
 var y = h - 100;
 // var leading = w;
-var s = w / 10;
-var rightTextMargin = w - 25;
+
+var textSizeSlider;
 
 var canvas;
 var memeText, clearButton, saveButton;
 var stringHolder = [];
+
+var img;
+
+// Offset mouse X and Y
+var offX, offY;
+
+function mousePressed() {
+  offX = mouseX - x;
+  offY = mouseY - y;
+}
+
+function mouseDragged() {
+  x = mouseX - offX;
+  y = mouseY - offY;
+  textToCanvas();
+}
+
+
 
 function setup() {
   canvas = createCanvas(w, h);
@@ -31,7 +49,11 @@ function setup() {
 
   saveButton = createButton('Save');
   saveButton.parent('actions');
-  saveButton.mousePressed(saveCanvas);
+  saveButton.mousePressed(saveIt);
+
+  textSizeSlider = createSlider(20, 80, 40);
+  textSizeSlider.input(textToCanvas);
+  textSizeSlider.parent('instructions');
 
   canvas.parent('canvas');
   canvas.dragOver(highlight);
@@ -39,10 +61,20 @@ function setup() {
   canvas.drop(gotFile, unhighlight);
 }
 
+function saveIt() {
+  saveCanvas("meme.png");
+}
+
+
 function textToCanvas() {
 
- // convert toString() instead of going letter by letter
- // like this: 
+  background(200);
+  if (img) {
+    image(img, 0, 0, w, w);
+  }
+
+  // convert toString() instead of going letter by letter
+  // like this:
 
   //  selectedString = window.getSelection().toString();
 
@@ -56,16 +88,18 @@ function textToCanvas() {
   //   text(selectedString, 5, 5, width - 10, height - 10);
   //   console.log(selectedString);
   // }
-// stringHolder.push(selectedString); 
+  // stringHolder.push(selectedString);
 
   fill(255);
   stroke(0);
   strokeWeight(4);
   // textLeading(300);
-    console.log('hits leading!')
+  console.log('hits leading!')
   textFont("Impact");
+  var s = textSizeSlider.value();
   textSize(s);
   var l = memeText.value().toUpperCase();
+  var rightTextMargin = w - x;
   text(l, x, y, rightTextMargin, h);
   // t.style('text-shadow', '2px 2px 4px #000');
 }
@@ -81,7 +115,7 @@ function unhighlight() {
 }
 
 function gotFile(file) {
-  var img = createImg(file.data);
+  img = createImg(file.data);
   img.hide();
   image(img, 0, 0, w, w);
 }
