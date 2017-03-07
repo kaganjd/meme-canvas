@@ -41,8 +41,8 @@ function setup() {
 
 function textToCanvas() {
 
- // convert toString() instead of going letter by letter
- // like this: 
+  // convert toString() instead of going letter by letter
+  // like this:
 
   //  selectedString = window.getSelection().toString();
 
@@ -56,13 +56,13 @@ function textToCanvas() {
   //   text(selectedString, 5, 5, width - 10, height - 10);
   //   console.log(selectedString);
   // }
-// stringHolder.push(selectedString); 
+  // stringHolder.push(selectedString);
 
   fill(255);
   stroke(0);
   strokeWeight(4);
   // textLeading(300);
-    console.log('hits leading!')
+  console.log('hits leading!')
   textFont("Impact");
   textSize(s);
   var l = memeText.value().toUpperCase();
