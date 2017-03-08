@@ -1,54 +1,33 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>memez</title>
     <script src="sketch.js" type="text/javascript"></script>
     <link rel="stylesheet" href="style.css"></link>
-
     <!--p5.js libraries-->
     <script src="libraries/p5.js" type="text/javascript"></script>
     <script src="libraries/p5.dom.js" type="text/javascript"></script>
-
-    <!--twitter button-->
-    <script>
-        ! function(d, s, id) {
-            var js,
-                fjs = d.getElementsByTagName(s)[0],
-                p = /^http: /.test(d.location) ? 'http' : 'https';
-            if (!d.getElementById(id)) {
-                js = d.createElement(s);
-                js.id = id;
-                js.src = p + '://platform.twitter.com/widgets.js';
-                fjs.parentNode.insertBefore(js, fjs);
-            }
-        }
-        (document, 'script', 'twitter-wjs');
-    </script>
 </head>
-
 <body>
     <div id="container">
         <h1>meme canvas</h1>
         <div id="instructions">
             <ol>
-                <li>Drag and drop an image onto the gray canvas. (Please use a square image.)</li>
-                <li>Type some text into the rectangle below.
-                  Drag the text to move it around.
-                  Use the slider below to change the text size.</li>
+                <li>Drag and drop a square image onto the gray canvas</li>
+                <li>Type some text into the rectangle below, and drag it to wherever you want it</li>
             </ol>
         </div>
-
-        <div id="canvas">
-            <div id="textarea"></div>
-            <div id="clear">made a mistake? -----------> </div>
-        </div>
-
-        <div id="actions">
-            <!-- <a class="twitter-share-button" href="https://twitter.com/share" data-size="large">Tweet</a> -->
+        <div id="dashboard">
+            <div id="canvas"></div>
+            <div id="text-area"></div>
+            <div id="slider-area">
+                <span id="smaller">A</span>
+                <div id="size-slider"></div>
+                <span id="bigger">A</span>
+            </div>
+            <div id="actions"></div>
         </div>
     </div>
 </body>
-
 </html>

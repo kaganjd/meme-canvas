@@ -1,18 +1,43 @@
 body, h1 {
   font-family: Helvetica;
-  margin: 20px;
-}
-
-#container {
-  flex-direction: column;
-  display: flex;
-  width: 500px;
 }
 
 #canvas {
-  text-align: right;
+  position: absolute;
 }
 
 #actions {
-  text-align: right;
+  position: relative;
+  left: 275px;
+  top: 320px;
+}
+
+#dashboard {
+  display: inline;
+}
+
+#text-area {
+  position: relative;
+  left: 410px;
+}
+
+#slider-area {
+  position: relative;
+  left: 410px;
+  border: 1px solid;
+  padding: 5px;
+  text-align: center;
+  width: 220px;
+}
+
+#slider-area > div {
+  display: inline;
+}
+
+#smaller {
+  font-size: 12px;
+}
+
+#bigger {
+  font-size: 30px;
 }

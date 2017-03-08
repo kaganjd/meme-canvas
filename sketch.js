@@ -7,16 +7,14 @@ var h = w;
 
 // text positioning
 var x = 10;
-var y = h - 100;
-// var leading = w;
+var y = h - 350;
 
-var textSizeSlider;
-
-var canvas;
-var memeText, clearButton, saveButton;
-var stringHolder = [];
-
-var img;
+var textSizeSlider,
+  canvas,
+  memeText,
+  clearButton,
+  saveButton,
+  img;
 
 // Offset mouse X and Y
 var offX, offY;
@@ -32,28 +30,26 @@ function mouseDragged() {
   textToCanvas();
 }
 
-
-
 function setup() {
   canvas = createCanvas(w, h);
   background(200);
 
-  memeText = createElement('textarea', '(right over here) (^_-)');
-  memeText.parent('textarea');
+  memeText = createElement('textarea');
+  memeText.parent('text-area');
   memeText.style('width', '300px');
   memeText.input(textToCanvas);
 
   clearButton = createButton('Clear Canvas');
-  clearButton.parent('clear');
-  clearButton.mousePressed(resetCanvas);
+  clearButton.parent('actions');
+  clearButton.mousePressed(clearCanvas);
 
   saveButton = createButton('Save');
   saveButton.parent('actions');
   saveButton.mousePressed(saveIt);
 
   textSizeSlider = createSlider(20, 80, 40);
+  textSizeSlider.parent('size-slider');
   textSizeSlider.input(textToCanvas);
-  textSizeSlider.parent('instructions');
 
   canvas.parent('canvas');
   canvas.dragOver(highlight);
@@ -61,49 +57,40 @@ function setup() {
   canvas.drop(gotFile, unhighlight);
 }
 
-function saveIt() {
-  saveCanvas("meme.png");
-}
-
-
 function textToCanvas() {
-
   background(200);
+
+  // if there's an image, render it
   if (img) {
     image(img, 0, 0, w, w);
   }
 
-  // convert toString() instead of going letter by letter
-  // like this:
-
-  //  selectedString = window.getSelection().toString();
-
-  // if (selectedString.length > 0) {
-  //   textFont("Impact");
-  //   textSize(stringHeight);
-  //   stroke(0);
-  //   strokeWeight(stringHeight / 10);
-  //   fill(255);
-  //   textLeading(350);
-  //   text(selectedString, 5, 5, width - 10, height - 10);
-  //   console.log(selectedString);
-  // }
-  // stringHolder.push(selectedString);
-
+  // text styling and positioning
   fill(255);
   stroke(0);
   strokeWeight(4);
-  // textLeading(300);
-  console.log('hits leading!')
   textFont("Impact");
-  var s = textSizeSlider.value();
-  textSize(s);
   var l = memeText.value().toUpperCase();
   var rightTextMargin = w - x;
   text(l, x, y, rightTextMargin, h);
-  // t.style('text-shadow', '2px 2px 4px #000');
+
+  // set the size of the text with the textSizeSlider
+  var s = textSizeSlider.value();
+  textSize(s);
 }
 
+// 'save' button
+function saveIt() {
+  saveCanvas("meme.png");
+}
+
+// 'clear' button
+function clearCanvas() {
+  clear();
+  background(200);
+}
+
+// dropzone styling
 function highlight() {
   canvas.style('background-color', '#ccc');
   canvas.style('border-style', 'dashed');
@@ -118,9 +105,4 @@ function gotFile(file) {
   img = createImg(file.data);
   img.hide();
   image(img, 0, 0, w, w);
-}
-
-function resetCanvas() {
-  clear();
-  background(200);
 }
