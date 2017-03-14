@@ -1,5 +1,9 @@
-// adapted from Daniel Shiffman's Drag and Drop tutorial
-// https://www.youtube.com/watch?v=o4UmGrPst_c
+// adapted from Daniel Shiffman's
+// Drag and Drop tutorial: https://www.youtube.com/watch?v=o4UmGrPst_c
+// Mad Libs Generator: https://www.youtube.com/watch?v=ziBO-U2_t3k
+
+// tabletop.js variables
+var rawData;
 
 // canvas dimensions
 var w = 400;
@@ -31,6 +35,15 @@ function mouseDragged() {
 }
 
 function setup() {
+  // tabletop.js init() function returns data as an array of objects, like this:
+  // [{"animal": "horse", 
+  //  "color": "brown"},
+  //  {"animal": "chick", 
+  //  "color": "yellow"}]
+  Tabletop.init( { key: '1B4WC1tsm_OnrGZGfltHCoH1ceCYkgkkm5ilhmcyj0Pk',
+                   callback: gotData,
+                   simpleSheet: true } )
+
   canvas = createCanvas(w, h);
   background(200);
 
@@ -105,4 +118,9 @@ function gotFile(file) {
   img = createImg(file.data);
   img.hide();
   image(img, 0, 0, w, w);
+}
+
+function gotData(data, tabletop) { 
+  rawData = data;
+  console.log(data)
 }
