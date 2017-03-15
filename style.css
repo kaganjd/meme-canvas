@@ -2,14 +2,22 @@ body, h1 {
   font-family: Helvetica;
 }
 
+p {
+  line-height: 10px;
+}
+
+li {
+  line-height: 20px;
+}
+
 #canvas {
   position: absolute;
 }
 
 #actions {
   position: relative;
-  left: 275px;
-  top: 320px;
+  left: 510px;
+  top: 50px;
 }
 
 #dashboard {
@@ -18,17 +26,18 @@ body, h1 {
 
 #text-area {
   position: relative;
-  left: 410px;
+  left: 510px;
 }
 
 #slider-area {
   position: relative;
-  left: 410px;
+  left: 510px;
   border: 1px solid;
   padding: 5px;
   text-align: center;
   width: 220px;
 }
+
 
 #slider-area > div {
   display: inline;

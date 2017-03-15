@@ -6,12 +6,14 @@
 var rawData;
 
 // canvas dimensions
-var w = 400;
+var w = 500;
 var h = w;
 
 // text positioning
 var x = 10;
 var y = h - 350;
+
+var textSizeStart = 40;
 
 var textSizeSlider,
   canvas,
@@ -60,7 +62,7 @@ function setup() {
   saveButton.parent('actions');
   saveButton.mousePressed(saveIt);
 
-  textSizeSlider = createSlider(20, 80, 40);
+  textSizeSlider = createSlider(textSizeStart, 100, 70);
   textSizeSlider.parent('size-slider');
   textSizeSlider.input(textToCanvas);
 
@@ -81,15 +83,19 @@ function textToCanvas() {
   // text styling and positioning
   fill(255);
   stroke(0);
-  strokeWeight(4);
+  strokeWeight(3);
   textFont("Impact");
+  textSize(resizeText());
   var l = memeText.value().toUpperCase();
   var rightTextMargin = w - x;
   text(l, x, y, rightTextMargin, h);
 
-  // set the size of the text with the textSizeSlider
-  var s = textSizeSlider.value();
-  textSize(s);
+// overwite the textSizeStart with textSizeSlider value
+  function resizeText(start, end) {
+    start = textSizeStart;
+    end = textSizeSlider.value();
+    textSize(end);
+  }
 }
 
 // 'save' button
